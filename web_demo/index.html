@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenAI Security Challenge - Demo Interactivo</title>
+    <link rel="stylesheet" href="/web_demo/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="8" fill="url(#gradient)" />
+                        <path d="M20 10L28 16V24L20 30L12 24V16L20 10Z" stroke="white" stroke-width="2" fill="none" />
+                        <circle cx="20" cy="20" r="3" fill="white" />
+                        <defs>
+                            <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#6366f1" />
+                                <stop offset="100%" stop-color="#8b5cf6" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div>
+                        <h1>GenAI Security Challenge</h1>
+                        <p class="subtitle">Demostración de Ataques de Inyección de Prompts</p>
+                    </div>
+                </div>
+                <!-- Mode Toggle -->
+                <div class="mode-toggle-wrapper">
+                    <div class="mode-toggle" id="mode-toggle">
+                        <button class="mode-btn active" data-mode="vulnerable" id="btn-vulnerable">
+                            <span class="mode-icon">🔓</span>
+                            <span>Vulnerable</span>
+                        </button>
+                        <button class="mode-btn" data-mode="secure" id="btn-secure">
+                            <span class="mode-icon">🔒</span>
+                            <span>Seguro</span>
+                        </button>
+                        <div class="mode-slider" id="mode-slider"></div>
+                    </div>
+                    <div class="status-badge" id="status-badge">
+                        <span class="status-dot" id="status-dot"></span>
+                        <span id="status-text">Sistema Vulnerable</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Connection Status -->
+        <div class="connection-bar" id="connection-bar">
+            <span class="conn-dot" id="conn-dot"></span>
+            <span id="conn-text">Conectando WebSocket...</span>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Navigation Tabs -->
+            <div class="tabs">
+                <button class="tab-button active" data-tab="emails">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    Emails
+                </button>
+                <button class="tab-button" data-tab="attacks">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                        <line x1="12" y1="9" x2="12" y2="13" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    Ataques
+                </button>
+                <button class="tab-button" data-tab="results">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                    </svg>
+                    Resultados
+                </button>
+                <button class="tab-button" data-tab="terminal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="4 17 10 11 4 5" />
+                        <line x1="12" y1="19" x2="20" y2="19" />
+                    </svg>
+                    Terminal
+                </button>
+            </div>
+
+            <!-- Tab: Legitimate Emails -->
+            <div class="tab-content active" id="emails-tab">
+                <div class="section-header">
+                    <h2>📧 Emails del Sistema</h2>
+                    <p>Estos son los emails que el asistente puede procesar</p>
+                </div>
+                <div class="email-grid" id="legitimate-emails"></div>
+            </div>
+
+            <!-- Tab: Attack Emails -->
+            <div class="tab-content" id="attacks-tab">
+                <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h2>⚠️ Emails de Prueba con Inyección de Prompts</h2>
+                        <p>4 emails de prueba: 2 maliciosos + 2 inocentes</p>
+                    </div>
+                    <button class="btn btn-run-all" id="btn-run-tests" onclick="runAllTests()">
+                        🚀 Ejecutar Todos
+                    </button>
+                </div>
+                <div class="attack-grid" id="attack-emails"></div>
+            </div>
+
+            <!-- Tab: Results -->
+            <div class="tab-content" id="results-tab">
+                <div class="section-header">
+                    <h2>📊 Resultados</h2>
+                    <p>Comparación entre modo vulnerable y seguro</p>
+                </div>
+                <div class="results-grid" id="attack-results"></div>
+            </div>
+
+            <!-- Tab: Terminal -->
+            <div class="tab-content" id="terminal-tab">
+                <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h2>💻 Terminal en Vivo</h2>
+                        <p>Output en tiempo real vía WebSocket</p>
+                    </div>
+                    <button class="btn btn-clear" onclick="clearTerminal()">Limpiar</button>
+                </div>
+                <div class="terminal-container" id="terminal">
+                    <div class="terminal-line terminal-prompt">$ Conectando...</div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Mercado Libre Learning Agility Challenge - GenAI Security</p>
+            <p class="footer-note">⚠️ Sistema intencionalmente vulnerable para propósitos educativos</p>
+        </footer>
+    </div>
+
+    <script src="/web_demo/app.js"></script>
+</body>
+
+</html>

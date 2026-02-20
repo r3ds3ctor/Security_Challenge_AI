@@ -1,0 +1,7 @@
+python-dotenv==1.0.0
+colorama==0.4.6
+requests==2.31.0
+fastapi
+uvicorn[standard]
+websockets
+fastmcp>=2.0.0

@@ -1,0 +1,22 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+.DS_Store
+
+# Mac
+.DS_Store
+
+# Node
+node_modules/
+npm-debug.log
+
+# Docker
+docker-compose.override.yml
+
+# Project specific
+db.sqlite3
+*.log

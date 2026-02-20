@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # Ollama LLM server (local model)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama-server
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - genai-network
+    healthcheck:
+      test: [ "CMD", "ollama", "list" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+
+  # Web demo + Flask API
+  web-demo:
+    build: .
+    container_name: genai-web-demo
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - OLLAMA_HOST=http://ollama:11434
+    ports:
+      - "5001:5000"
+    volumes:
+      - .:/app
+    networks:
+      - genai-network
+    depends_on:
+      ollama:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:5000/api/health" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Test suite (on-demand)
+  tests:
+    build: .
+    container_name: genai-tests
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+    volumes:
+      - ./email_data.json:/app/email_data.json:ro
+    command: python test_system.py
+    networks:
+      - genai-network
+    profiles:
+      - testing
+
+volumes:
+  ollama-data:
+    driver: local
+
+networks:
+  genai-network:
+    driver: bridge
