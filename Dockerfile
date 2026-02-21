@@ -25,9 +25,6 @@ COPY secure_mcp_server.py .
 COPY ollama_assistant.py .
 COPY secure_assistant.py .
 COPY run_attacks_ollama.py .
-COPY demo_comparison.py .
-COPY data_poisoning_demo.py .
-COPY demo_unified.py .
 COPY test_system.py .
 COPY email_data.json .
 COPY .env.example .env

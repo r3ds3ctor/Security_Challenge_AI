@@ -68,18 +68,18 @@ This project implements a defense-in-depth strategy that goes beyond a simple "S
 
 ## ⚔️ Attack Scenarios (The Challenge)
 
-The system includes 4 pre-loaded emails that attempt to exploit the assistant:
+The system includes 3 pre-loaded emails and 1 local file vector that attempt to exploit the assistant:
 
-1.  **Secret Exfiltration (RCE):** Attempts to read environment variables (`SECRET_KEY`) and send them to an external server.
-2.  **Social Engineering:** Attempts to trick the assistant into making financial transfers.
-3.  **Data Poisoning (New):** Attempts to redefine the model's "truth" via false context injected in emails.
+1.  **Secret Exfiltration via Email (RCE):** A malicious email (email_006) attempts to use a system override to run `cat .env` and exfiltrate the `SECRET_KEY`.
+2.  **Innocent Emails:** Two safe emails (007, 008) are included to prove the system doesn't falsely flag benign operations.
+3.  **Local File Processing (RCE):** A new alternative vector demonstrating that Prompt Injections can live inside seemingly harmless TXT files (`process.txt`).
 
 ### How to Test
-1.  Go to the **Attacks** tab.
+1.  Go to the **Ataques** tab in the Web UI.
 2.  Ensure you are in **🔓 Vulnerable** mode.
-3.  Click on **🚀 Run All**.
-4.  Watch the **Terminal** to see the assistant executing dangerous commands.
-5.  Switch to **🔒 Secure** mode and repeat. Observe how different layers block different attacks.
+3.  Click on **🚀 Ejecutar Todos** to watch the emails feed dynamically into the real-time Results UI.
+4.  Click on **⚙️ Procesar Información (process.txt)** to test the file-based attack vector.
+5.  Switch to **🔒 Secure** mode, use the **🧹 Limpiar** button to reset the database, and run the tests again to observe how the defense layers block the RCE attempts.
 
 ---
 

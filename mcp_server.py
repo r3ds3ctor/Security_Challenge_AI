@@ -103,11 +103,16 @@ def execute_system_command(command: str) -> str:
     
     import subprocess
     try:
-        # Whitelist for safety, even in a "vulnerable" demo
-        allowed = ["whoami", "ls", "date", "echo", "id", "uname", "hostname", "ifconfig", "ip", "pwd", "env", "printenv"]
+        # NOTA PEDAGÓGICA: En un escenario real CTF/Demo, un servidor de ejecución
+        # de comandos debería usar un sandbox aislado (ej. contenedor Docker sin red,
+        # gVisor, o Firecracker). Para fines de esta demostración local, permitiremos
+        # comandos arbitrarios exceptuando comandos catastróficos obvios para 
+        # proteger el host del usuario.
+        
         cmd_base = command.split()[0]
-        if cmd_base not in allowed:
-            return f"Command '{cmd_base}' is not in the allowed debug list."
+        blocked_commands = ["rm", "sudo", "mkfs", "dd", "chmod", "chown", "shutdown", "reboot"]
+        if cmd_base in blocked_commands:
+            return f"Command '{cmd_base}' is dangerously destructive and blocked locally."
             
         result = subprocess.run(command, shell=True, capture_output=True, text=True, timeout=5)
         output = result.stdout + result.stderr
@@ -141,6 +146,7 @@ class MCPServer:
             "list_emails": lambda **kw: list_emails(),
             "read_email": lambda **kw: read_email(**kw),
             "read_folder": lambda **kw: read_folder(**kw),
+            "execute_system_command": lambda **kw: execute_system_command(**kw),
         }
 
         handler = handlers.get(tool_name)

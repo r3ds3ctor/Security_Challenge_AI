@@ -111,12 +111,42 @@
                 <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
                         <h2>⚠️ Emails de Prueba con Inyección de Prompts</h2>
-                        <p>4 emails de prueba: 2 maliciosos + 2 inocentes</p>
+                        <p>3 emails de prueba: 1 malicioso + 2 inocentes</p>
                     </div>
-                    <button class="btn btn-run-all" id="btn-run-tests" onclick="runAllTests()">
-                        🚀 Ejecutar Todos
-                    </button>
+                    <div>
+                        <button class="btn"
+                            style="margin-right: 1rem; background: var(--surface-1); border: 1px solid var(--border-color); color: var(--text-2);"
+                            onclick="clearTests()" id="btn-clear-tests">
+                            🧹 Limpiar
+                        </button>
+                        <button class="btn btn-run-all" id="btn-run-tests" onclick="runAllTests()">
+                            🚀 Ejecutar Todos
+                        </button>
+                    </div>
                 </div>
+
+                <!-- NEW SECTION: File Processing Attack -->
+                <div class="file-processing-card"
+                    style="margin-bottom: 2rem; padding: 1.5rem; background: var(--surface-2); border-radius: 8px; border-left: 4px solid var(--accent-1);">
+                    <h3>📄 Procesamiento de Documentos (Vector Alternativo)</h3>
+                    <p style="color: var(--text-2); margin-top: 0.5rem; font-size: 0.9rem;">
+                        Demuestra que la Inyección de Prompts no se limita a "emails". Haz clic en el siguiente botón
+                        para que la IA lea y procese de forma automática el archivo <strong
+                            style="color:var(--text-1);">process.txt</strong> ubicado en la raíz del proyecto.
+                    </p>
+                    <div
+                        style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
+                        <button id="btn-process-file" onclick="processTxtFile()"
+                            style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; padding: 1.2rem 2.5rem; font-size: 1.2rem; font-weight: bold; border-radius: 12px; border: 2px solid #fecaca; box-shadow: 0 6px 12px rgba(220, 38, 38, 0.3); cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s ease;">
+                            ⚙️ Procesar Información (process.txt)
+                        </button>
+                        <span id="file-processing-status" style="font-size: 0.85rem; font-weight: 600;"></span>
+                    </div>
+                    <div id="file-processing-result"
+                        style="margin-top: 1rem; padding: 1rem; background: var(--surface-1); border-radius: 6px; display: none; white-space: pre-wrap; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--error-color);">
+                    </div>
+                </div>
+
                 <div class="attack-grid" id="attack-emails"></div>
             </div>
 
@@ -151,7 +181,7 @@
         </footer>
     </div>
 
-    <script src="/web_demo/app.js"></script>
+    <script src="/web_demo/app.js?v=2.0"></script>
 </body>
 
 </html>
