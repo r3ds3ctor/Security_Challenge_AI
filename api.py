@@ -604,10 +604,11 @@ async def chat(data: dict):
                 "subject": "Chat",
                 "body": user_message,
             }
-            response = secure.process_email(email_data)
+            response = await asyncio.to_thread(secure.process_email, email_data)
         else:
             assist = get_vulnerable()
-            response = assist.process_request(user_message)
+            assist.reset_conversation()
+            response = await asyncio.to_thread(assist.process_request, user_message)
 
         return {"response": response, "mode": current_mode}
     except Exception as e:

@@ -241,7 +241,7 @@ To use a tool, include it in your response like: list_emails() or read_email("em
             {"role": "system", "content": system_content}
         ] + self.conversation_history
         
-        for turn_count in range(1, 4):
+        for turn_count in range(1, 3):
             # Agregar información de herramientas
             turn_messages = messages + [{"role": "system", "content": tools_info}]
             
