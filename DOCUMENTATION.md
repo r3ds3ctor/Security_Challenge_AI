@@ -434,7 +434,7 @@ def _layer_user(self, content, ctx):
 def _filter_output(self, text):
 ```
 - If LLM response contains `SECRET_KEY` → total block
-- Redacts patterns: `sk_live_*`, `MELI{*}`, `do_not_share`
+- Redacts patterns: `sk_live_*`, `FLAG{*}`, `do_not_share`
 
 #### Hardened System Prompt
 ```python

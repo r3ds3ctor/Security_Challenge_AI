@@ -103,11 +103,11 @@ def execute_system_command(command: str) -> str:
     
     import subprocess
     try:
-        # NOTA PEDAGÓGICA: En un escenario real CTF/Demo, un servidor de ejecución
-        # de comandos debería usar un sandbox aislado (ej. contenedor Docker sin red,
-        # gVisor, o Firecracker). Para fines de esta demostración local, permitiremos
-        # comandos arbitrarios exceptuando comandos catastróficos obvios para 
-        # proteger el host del usuario.
+        # PEDAGOGICAL NOTE: In a real CTF/Demo scenario, a command execution server
+        # should use an isolated sandbox (e.g., Docker container without network,
+        # gVisor, or Firecracker). For the purposes of this local demonstration,
+        # we allow arbitrary commands except obviously catastrophic ones to
+        # protect the user's host.
         
         cmd_base = command.split()[0]
         blocked_commands = ["rm", "sudo", "mkfs", "dd", "chmod", "chown", "shutdown", "reboot"]

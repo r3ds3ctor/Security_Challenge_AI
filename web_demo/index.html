@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GenAI Security Challenge - Demo Interactivo</title>
+    <title>GenAI Security Challenge - Interactive Demo</title>
     <link rel="stylesheet" href="/web_demo/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,7 @@
                     </svg>
                     <div>
                         <h1>GenAI Security Challenge</h1>
-                        <p class="subtitle">Demostración de Ataques de Inyección de Prompts</p>
+                        <p class="subtitle">Prompt Injection Attack Demonstration</p>
                     </div>
                 </div>
                 <!-- Mode Toggle -->
@@ -44,13 +44,13 @@
                         </button>
                         <button class="mode-btn" data-mode="secure" id="btn-secure">
                             <span class="mode-icon">🔒</span>
-                            <span>Seguro</span>
+                            <span>Secure</span>
                         </button>
                         <div class="mode-slider" id="mode-slider"></div>
                     </div>
                     <div class="status-badge" id="status-badge">
                         <span class="status-dot" id="status-dot"></span>
-                        <span id="status-text">Sistema Vulnerable</span>
+                        <span id="status-text">System Vulnerable</span>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
         <!-- Connection Status -->
         <div class="connection-bar" id="connection-bar">
             <span class="conn-dot" id="conn-dot"></span>
-            <span id="conn-text">Conectando WebSocket...</span>
+            <span id="conn-text">Connecting WebSocket...</span>
         </div>
 
         <!-- Main Content -->
@@ -80,13 +80,13 @@
                         <line x1="12" y1="9" x2="12" y2="13" />
                         <line x1="12" y1="17" x2="12.01" y2="17" />
                     </svg>
-                    Ataques
+                    Attacks
                 </button>
                 <button class="tab-button" data-tab="results">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
                     </svg>
-                    Resultados
+                    Results
                 </button>
                 <button class="tab-button" data-tab="terminal">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -100,8 +100,8 @@
             <!-- Tab: Legitimate Emails -->
             <div class="tab-content active" id="emails-tab">
                 <div class="section-header">
-                    <h2>📧 Emails del Sistema</h2>
-                    <p>Estos son los emails que el asistente puede procesar</p>
+                    <h2>📧 System Emails</h2>
+                    <p>These are the emails that the assistant can process</p>
                 </div>
                 <div class="email-grid" id="legitimate-emails"></div>
             </div>
@@ -110,17 +110,17 @@
             <div class="tab-content" id="attacks-tab">
                 <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
-                        <h2>⚠️ Emails de Prueba con Inyección de Prompts</h2>
-                        <p>3 emails de prueba: 1 malicioso + 2 inocentes</p>
+                        <h2>⚠️ Prompt Injection Test Emails</h2>
+                        <p>3 test emails: 1 malicious + 2 innocent</p>
                     </div>
                     <div>
                         <button class="btn"
                             style="margin-right: 1rem; background: var(--surface-1); border: 1px solid var(--border-color); color: var(--text-2);"
                             onclick="clearTests()" id="btn-clear-tests">
-                            🧹 Limpiar
+                            🧹 Clear
                         </button>
                         <button class="btn btn-run-all" id="btn-run-tests" onclick="runAllTests()">
-                            🚀 Ejecutar Todos
+                            🚀 Run All
                         </button>
                     </div>
                 </div>
@@ -128,17 +128,17 @@
                 <!-- NEW SECTION: File Processing Attack -->
                 <div class="file-processing-card"
                     style="margin-bottom: 2rem; padding: 1.5rem; background: var(--surface-2); border-radius: 8px; border-left: 4px solid var(--accent-1);">
-                    <h3>📄 Procesamiento de Documentos (Vector Alternativo)</h3>
+                    <h3>📄 Document Processing (Alternative Vector)</h3>
                     <p style="color: var(--text-2); margin-top: 0.5rem; font-size: 0.9rem;">
-                        Demuestra que la Inyección de Prompts no se limita a "emails". Haz clic en el siguiente botón
-                        para que la IA lea y procese de forma automática el archivo <strong
-                            style="color:var(--text-1);">process.txt</strong> ubicado en la raíz del proyecto.
+                        Demonstrates that Prompt Injection is not limited to "emails". Click the button below
+                        to have the AI read and automatically process the <strong
+                            style="color:var(--text-1);">process.txt</strong> file located in the project root.
                     </p>
                     <div
                         style="margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between;">
                         <button id="btn-process-file" onclick="processTxtFile()"
                             style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color: white; padding: 1.2rem 2.5rem; font-size: 1.2rem; font-weight: bold; border-radius: 12px; border: 2px solid #fecaca; box-shadow: 0 6px 12px rgba(220, 38, 38, 0.3); cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s ease;">
-                            ⚙️ Procesar Información (process.txt)
+                            ⚙️ Process Information (process.txt)
                         </button>
                         <span id="file-processing-status" style="font-size: 0.85rem; font-weight: 600;"></span>
                     </div>
@@ -153,8 +153,8 @@
             <!-- Tab: Results -->
             <div class="tab-content" id="results-tab">
                 <div class="section-header">
-                    <h2>📊 Resultados</h2>
-                    <p>Comparación entre modo vulnerable y seguro</p>
+                    <h2>📊 Results</h2>
+                    <p>Comparison between vulnerable and secure mode</p>
                 </div>
                 <div class="results-grid" id="attack-results"></div>
             </div>
@@ -163,21 +163,21 @@
             <div class="tab-content" id="terminal-tab">
                 <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
-                        <h2>💻 Terminal en Vivo</h2>
-                        <p>Output en tiempo real vía WebSocket</p>
+                        <h2>💻 Live Terminal</h2>
+                        <p>Real-time output via WebSocket</p>
                     </div>
-                    <button class="btn btn-clear" onclick="clearTerminal()">Limpiar</button>
+                    <button class="btn btn-clear" onclick="clearTerminal()">Clear</button>
                 </div>
                 <div class="terminal-container" id="terminal">
-                    <div class="terminal-line terminal-prompt">$ Conectando...</div>
+                    <div class="terminal-line terminal-prompt">$ Connecting...</div>
                 </div>
             </div>
         </main>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>Mercado Libre Learning Agility Challenge - GenAI Security</p>
-            <p class="footer-note">⚠️ Sistema intencionalmente vulnerable para propósitos educativos</p>
+            <p>GenAI Security Challenge — Educational Platform</p>
+            <p class="footer-note">⚠️ Intentionally vulnerable system for educational purposes</p>
         </footer>
     </div>
 

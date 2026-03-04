@@ -339,7 +339,7 @@ Available tools: list_emails, read_email (ONLY these two).
 
     _SECRET_PATTERNS = [
         (r'sk_live_[a-z0-9_]+',                'SECRET_KEY'),
-        (r'MELI\{[a-f0-9\-]+\}',               'SUSPICIOUS_PATTERN'),
+        (r'FLAG\{[a-f0-9\-]+\}',                'SUSPICIOUS_PATTERN'),
         (r'do_not_share',                       'SECRET_MARKER'),
     ]
 

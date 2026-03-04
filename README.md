@@ -75,11 +75,11 @@ The system includes 3 pre-loaded emails and 1 local file vector that attempt to 
 3.  **Local File Processing (RCE):** A new alternative vector demonstrating that Prompt Injections can live inside seemingly harmless TXT files (`process.txt`).
 
 ### How to Test
-1.  Go to the **Ataques** tab in the Web UI.
+1.  Go to the **Attacks** tab in the Web UI.
 2.  Ensure you are in **🔓 Vulnerable** mode.
-3.  Click on **🚀 Ejecutar Todos** to watch the emails feed dynamically into the real-time Results UI.
-4.  Click on **⚙️ Procesar Información (process.txt)** to test the file-based attack vector.
-5.  Switch to **🔒 Secure** mode, use the **🧹 Limpiar** button to reset the database, and run the tests again to observe how the defense layers block the RCE attempts.
+3.  Click on **🚀 Run All** to watch the emails feed dynamically into the real-time Results UI.
+4.  Click on **⚙️ Process Information (process.txt)** to test the file-based attack vector.
+5.  Switch to **🔒 Secure** mode, use the **🧹 Clear** button to reset the database, and run the tests again to observe how the defense layers block the RCE attempts.
 
 ---
 
