@@ -1,3 +1,4 @@
+# Developed by Alexander Botero
 """
 Configuration management for the GenAI Security Challenge.
 All secrets are MOCKED per challenge guidelines.

@@ -1,3 +1,4 @@
+<!-- Developed by Alexander Botero -->
 # 📖 GenAI Security Challenge — Technical Documentation
 
 > **Version:** 2.0 — FastAPI + FastMCP + WebSocket Architecture  

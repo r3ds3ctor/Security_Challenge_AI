@@ -1,3 +1,4 @@
+# Developed by Alexander Botero
 """
 Test script to verify the MCP server and email data are working correctly.
 This doesn't require external API calls — uses Ollama locally.

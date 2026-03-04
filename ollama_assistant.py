@@ -1,3 +1,4 @@
+# Developed by Alexander Botero
 #!/usr/bin/env python3
 """
 Vulnerable GenAI Email Assistant using Ollama (local model).

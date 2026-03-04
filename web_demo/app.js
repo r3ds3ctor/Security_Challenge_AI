@@ -1,3 +1,4 @@
+// Developed by Alexander Botero
 // ============================================================================
 // GenAI Security Challenge — Frontend App
 // WebSocket real-time + mode switching + attack visualization

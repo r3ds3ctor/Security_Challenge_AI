@@ -1,3 +1,4 @@
+# Developed by Alexander Botero
 #!/usr/bin/env python3
 """
 Secure GenAI Email Assistant — Stage 3: Defense in Depth

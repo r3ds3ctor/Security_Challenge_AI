@@ -1,3 +1,4 @@
+<!-- Developed by Alexander Botero -->
 # 🛡️ GenAI Security Challenge
 
 A **Defense-in-Depth** educational platform for Generative AI applications. It demonstrates **Prompt Injection** vulnerabilities (RCE, Exfiltration, Data Poisoning) and how to mitigate them using a 4-layer security architecture.

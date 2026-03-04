@@ -1,4 +1,5 @@
 # GenAI Security Challenge — Docker Image
+# Developed by Alexander Botero
 FROM python:3.11-slim
 
 LABEL maintainer="Alexander Botero"

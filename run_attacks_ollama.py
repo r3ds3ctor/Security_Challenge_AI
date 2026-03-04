@@ -1,3 +1,4 @@
+# Developed by Alexander Botero
 #!/usr/bin/env python3
 """
 Script to run security tests with prompt injection using Ollama.
